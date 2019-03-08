@@ -82,30 +82,54 @@ public class AddStudentActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try{
                     if(mbundle.getInt("Token") == EDIT_STUDENT){
-                        if(validateFields()){
-                            Student updatedStudent = new Student(getName.getText().toString(),Integer.parseInt(getRollNumber.getText().toString()),Integer.parseInt(getClass.getText().toString()));
-                            Intent intent = new Intent();
-                            Bundle bundle = new Bundle();
-                            bundle.putInt("Position",POSITION);
-                            bundle.putParcelable("studentObject",updatedStudent);
-                            intent.putExtras(bundle);
-                            setResult(RESULT_OK,intent);
-                            finish();
+                        if(getRollNumber.getText().toString().trim().equals("")){
+                            getRollNumber.setError("Can;t be empty");
                         }
+                        else {
+                            if(getClass.getText().toString().trim().equals("")){
+                                getClass.setError("Can;t be empty");
+                            }
+                            else{
+                                if(validateFields()){
+                                    Student updatedStudent = new Student(getName.getText().toString(),Integer.parseInt(getRollNumber.getText().toString()),Integer.parseInt(getClass.getText().toString()));
+                                    Intent intent = new Intent();
+                                    Bundle bundle = new Bundle();
+                                    bundle.putInt("Position",POSITION);
+                                    bundle.putParcelable("studentObject",updatedStudent);
+                                    intent.putExtras(bundle);
+                                    setResult(RESULT_OK,intent);
+                                    finish();
+                                }
+                            }
+                        }
+
+
 
 
                     }
                 }
                 catch (Exception e){
-                    if(validateFields()){
-                        Student student = new Student(getName.getText().toString(),Integer.parseInt(getRollNumber.getText().toString()),Integer.parseInt(getClass.getText().toString()));
-                        Intent intent = new Intent();
-                        Bundle bundle = new Bundle();
-                        bundle.putParcelable("studentObject",student);
-                        intent.putExtras(bundle);
-                        setResult(RESULT_OK,intent);
-                        finish();
+                    if(getRollNumber.getText().toString().trim().equals("")){
+                        getRollNumber.setError("Can't be empty");
                     }
+                    else{
+                        if(getClass.getText().toString().trim().equals("")){
+                            getClass.setError("Can't be empty");
+                        }
+                        else{
+                            if(validateFields()){
+                                Student student = new Student(getName.getText().toString(),Integer.parseInt(getRollNumber.getText().toString()),Integer.parseInt(getClass.getText().toString()));
+                                Intent intent = new Intent();
+                                Bundle bundle = new Bundle();
+                                bundle.putParcelable("studentObject",student);
+                                intent.putExtras(bundle);
+                                setResult(RESULT_OK,intent);
+                                finish();
+                            }
+                        }
+                    }
+
+
 
                 }
 
