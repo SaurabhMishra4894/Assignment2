@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <Button
+            android:id="@+id/viewStudent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/view"
+            android:background="#009688"
+            android:drawableLeft="@drawable/ic_pageview_black_24dp"
+            style="@style/textStyle"
+            android:paddingStart="15dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:drawableStart="@drawable/ic_pageview_black_24dp"
+            android:paddingLeft="15dp"
+            android:layout_margin="1dp"
+            />
+
+        <Button
+            android:id="@+id/editStudent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edit"
+            android:background="#009688"
+            android:drawableLeft="@drawable/ic_update_black_24dp"
+            style="@style/textStyle"
+            android:paddingStart="15dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:drawableStart="@drawable/ic_update_black_24dp"
+            android:paddingLeft="15dp"
+            android:layout_margin="1dp"/>
+
+
+        <Button
+            android:id="@+id/deleteStudent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/delete"
+            android:background="#009688"
+            android:drawableLeft="@drawable/ic_delete_sweep_black_24dp"
+            style="@style/textStyle"
+            android:paddingStart="15dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:drawableStart="@drawable/ic_delete_sweep_black_24dp"
+            android:paddingLeft="15dp"
+            android:layout_margin="1dp"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

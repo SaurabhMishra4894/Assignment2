@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Student Manager</string>
+    <string name="name">Name</string>
+    <string name="roll_number">Roll Number</string>
+    <string name="hintclass">Class</string>
+    <string name="student_details">Student Details</string>
+    <string name="no_students_added_till_yet">No students added till yet!!!</string>
+    <string name="view">View</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="add_student">Add Student</string>
+    <string name="sort_by_name">Sort By Name</string>
+    <string name="sort_by_roll_number">Sort By Roll Number</string>
+</resources>
