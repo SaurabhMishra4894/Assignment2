@@ -1,4 +1,4 @@
-package com.example.studentmanager.util;
+package com.example.studentmanager.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -8,9 +8,9 @@ import android.os.Parcelable;
  *
  */
 public class Student implements Parcelable {
-    private String thisName;
-    private int thisrollNumber;
-    private int thisclass;
+    private String name;
+    private int rollNumber;
+    private int myClass;
 
     /**
      * Constructor Student that will take Name/Roll Number/Class as input
@@ -20,9 +20,9 @@ public class Student implements Parcelable {
      * @param myClass
      */
     public Student(String myName,int myRollNumber, int myClass){
-        thisName = myName;
-        thisrollNumber = myRollNumber;
-        thisclass = myClass;
+        this.name = myName;
+        this.rollNumber = myRollNumber;
+        this.myClass = myClass;
     }
 
     /**
@@ -31,9 +31,9 @@ public class Student implements Parcelable {
      * @param in
      */
     private Student(Parcel in) {
-        thisName = in.readString();
-        thisrollNumber = in.readInt();
-        thisclass = in.readInt();
+        this.name = in.readString();
+        this.rollNumber = in.readInt();
+        this.myClass = in.readInt();
     }
 
     public static final Creator<Student> CREATOR = new Creator<Student>() {
@@ -53,8 +53,8 @@ public class Student implements Parcelable {
      *
      * @return Name
      */
-    public String getThisName() {
-        return thisName;
+    public String getName() {
+        return this.name;
     }
 
     /**
@@ -62,8 +62,8 @@ public class Student implements Parcelable {
      *
      * @param thisName
      */
-    public void setThisName(String thisName) {
-        this.thisName = thisName;
+    public void setName(String thisName) {
+        this.name = thisName;
     }
 
     /**
@@ -71,17 +71,17 @@ public class Student implements Parcelable {
      *
      * @return Roll Number
      */
-    public int getThisrollNumber() {
-        return thisrollNumber;
+    public int getRollNumber() {
+        return this.rollNumber;
     }
 
     /**
      * sets the RollNumber for the Student
      *
-     * @param thisrollNumber
+     * @param rollNumber
      */
-    public void setThisrollNumber(int thisrollNumber) {
-        this.thisrollNumber = thisrollNumber;
+    public void setRollNumber(int rollNumber) {
+        this.rollNumber = rollNumber;
     }
 
     /**
@@ -90,17 +90,17 @@ public class Student implements Parcelable {
      * @return class
      *
      */
-    public int getThisclass() {
-        return thisclass;
+    public int getMyClass() {
+        return this.myClass;
     }
 
     /**
      * sets the class for the student
      *
-     * @param thisclass
+     * @param myClass
      */
-    public void setThisclass(int thisclass) {
-        this.thisclass = thisclass;
+    public void setMyClass(int myClass) {
+        this.myClass = myClass;
     }
 
     @Override
@@ -110,8 +110,8 @@ public class Student implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(thisName);
-        dest.writeInt(thisrollNumber);
-        dest.writeInt(thisclass);
+        dest.writeString(this.name);
+        dest.writeInt(this.rollNumber);
+        dest.writeInt(this.myClass);
     }
 }

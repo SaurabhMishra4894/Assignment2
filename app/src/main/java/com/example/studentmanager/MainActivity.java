@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -23,7 +21,7 @@ import android.widget.Toast;
 
 import com.example.studentmanager.activity.AddStudentActivity;
 import com.example.studentmanager.adapter.StudentAdapter;
-import com.example.studentmanager.util.Student;
+import com.example.studentmanager.model.Student;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     protected ArrayList<Student> studentList;
     protected StudentAdapter studentAdapter;
     protected int ADD_STUDENT = 10;
-    ImageButton sortDetails;
+    ImageButton ibSortDetails;
 
 
     /**
@@ -58,22 +56,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_student);
+        final RecyclerView studentRecyclerView = findViewById(R.id.studentRecyclerView);
+        final ImageButton imageView = findViewById(R.id.ibChangeView);
 
         // Initialising the valriables with the value
 
-        sortDetails = findViewById(R.id.ibSort);
+        ibSortDetails = findViewById(R.id.ibSort);
         studentList = new ArrayList<>();
         studentAdapter =
                 new StudentAdapter(getApplicationContext(),studentList);
         final RecyclerView.LayoutManager layoutManager =
                 new LinearLayoutManager(MainActivity.this);
+        studentRecyclerView.setLayoutManager(layoutManager);
+        studentRecyclerView.setAdapter(studentAdapter);
+        mNoStudentMessage = findViewById(R.id.noStudentMessage);
 
 
-
-        sortDetails.setOnClickListener(new View.OnClickListener() {
+        ibSortDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopupMenu popup = new PopupMenu(MainActivity.this, sortDetails);
+                PopupMenu popup = new PopupMenu(MainActivity.this, ibSortDetails);
                 //Inflating the Popup using xml file
                 popup.getMenuInflater()
                         .inflate(R.menu.option_menu, popup.getMenu());
@@ -89,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                                 sortByRollNo();
                                 return true;
                             default:
-                                Toast.makeText(getApplicationContext(),"something went wrong",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),getString(R.string.popUpError),Toast.LENGTH_SHORT).show();
                         }
                         return true;
                     }
@@ -103,11 +105,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        final RecyclerView studentRecyclerView = findViewById(R.id.studentRecyclerView);
-        studentRecyclerView.setLayoutManager(layoutManager);
-        studentRecyclerView.setAdapter(studentAdapter);
-        mNoStudentMessage = findViewById(R.id.noStudentMessage);
-        final ImageButton imageView = findViewById(R.id.ibChangeView);
+
+
+
 
 
         /*
@@ -134,11 +134,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        /**
-         *
-         * OnClickListener for the button to add Student
-         * Opens a new Activity for result to get student details from User
-         *
+        /*
+
+          OnClickListener for the button to add Student
+          Opens a new Activity for result to get student details from User
+
          */
 
         final Button button = findViewById(R.id.addStudentButton);
@@ -158,8 +158,7 @@ public class MainActivity extends AppCompatActivity {
                 // Includes dialog_on_student_click.xml file
                 View view =  getLayoutInflater().inflate(R.layout.dilog_on_student_click,null);
                 dialog.setContentView(view);
-                // Set dialog title
-                dialog.setTitle("Custom Dialog");
+
 
                 // set values for custom dialog components - text, image and button
                 Button viewButton = view.findViewById(R.id.viewStudent);
@@ -172,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                 final Bundle bundle = new Bundle();
                 Student student = studentList.get(position);
 
-                bundle.putParcelable("StudentObject",student);
+                bundle.putParcelable(getString(R.string.bundleKey),student);
 
                 /*
                  * OnClickListner for VIEW Button
@@ -184,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         dialog.dismiss();
 
-                        bundle.putInt("Token",VIEW_STUDENT);
+                        bundle.putInt(getString(R.string.bundleToken),VIEW_STUDENT);
                         intent.putExtras(bundle);
                         startActivity(intent);
                     }
@@ -200,9 +199,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
-                        bundle.putInt("Position",position);
+                        bundle.putInt(getString(R.string.position),position);
 
-                        bundle.putInt("Token",EDIT_STUDENT);
+                        bundle.putInt(getString(R.string.bundleToken),EDIT_STUDENT);
                         intent.putExtras(bundle);
                         startActivityForResult(intent,11);
 
@@ -222,10 +221,10 @@ public class MainActivity extends AppCompatActivity {
                         final AlertDialog deleteConfirmDialog =
                                 new AlertDialog.Builder(MainActivity.this).create();
 
-                        deleteConfirmDialog.setTitle("Delete");
-                        deleteConfirmDialog.setMessage("Are you sure want to delete ?");
+                        deleteConfirmDialog.setTitle(getString(R.string.delete));
+                        deleteConfirmDialog.setMessage(getString(R.string.deleteConfirmation));
                                 // Set the action buttons
-                                deleteConfirmDialog.setButton(AlertDialog.BUTTON_POSITIVE,"Delete", new DialogInterface.OnClickListener() {
+                                deleteConfirmDialog.setButton(AlertDialog.BUTTON_POSITIVE,getString(R.string.delete), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int id) {
                                         studentList.remove(position);
@@ -237,13 +236,13 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 });
 
-                                deleteConfirmDialog.setButton(AlertDialog.BUTTON_NEGATIVE,"Cancel", new DialogInterface.OnClickListener() {
+                                deleteConfirmDialog.setButton(AlertDialog.BUTTON_NEGATIVE,getString(R.string.cancel), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int id) {
                                         deleteConfirmDialog.dismiss();
                                     }
                                 });
-                        //
+
                         deleteConfirmDialog.show();
                         dialog.dismiss();
                     }
@@ -270,31 +269,30 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null && resultCode == RESULT_OK) {
             if(requestCode ==10){
-                Student student = data.getParcelableExtra("studentObject");
+                Student student = data.getParcelableExtra(getString(R.string.studentObject));
                 if(uniqueRollNo(student)){
                     studentList.add(student);
                     studentAdapter.notifyDataSetChanged();
                 }
                 else {
-                    Toast.makeText(getApplicationContext(),"Not a unique roll number",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),getString(R.string.notUniqueRollNo),Toast.LENGTH_SHORT).show();
                 }
 
 
                 if(studentList.size() >0){
                     mNoStudentMessage.setVisibility(View.GONE);
                 }
-                Log.i("MyTag", String.valueOf(studentList.get(0).getThisName()));
             }
             else if(requestCode == 11){
-                Student student = data.getParcelableExtra("studentObject");
+                Student student = data.getParcelableExtra(getString(R.string.studentObject));
                 Bundle bundle = data.getExtras();
-                int position = bundle.getInt("Position");
-                if(uniqueRollNo(student) || studentList.get(position).getThisrollNumber() == student.getThisrollNumber()){
+                int position = bundle.getInt(getString(R.string.position));
+                if(uniqueRollNo(student) || studentList.get(position).getRollNumber() == student.getRollNumber()){
                     studentList.set(position,student);
                     studentAdapter.notifyDataSetChanged();
                 }
                 else {
-                    Toast.makeText(getApplicationContext(),"Not a unique roll number",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),getString(R.string.notUniqueRollNo),Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -315,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
         Collections.sort(studentList, new Comparator<Student>() {
             @Override
             public int compare(Student o1, Student o2) {
-                return o1.getThisName().compareToIgnoreCase(o2.getThisName());
+                return o1.getName().compareToIgnoreCase(o2.getName());
             }
         });
         studentAdapter.notifyDataSetChanged();
@@ -330,16 +328,24 @@ public class MainActivity extends AppCompatActivity {
         Collections.sort(studentList, new Comparator<Student>() {
             @Override
             public int compare(Student o1, Student o2) {
-                return (Integer.parseInt(String.valueOf(o1.getThisrollNumber())))-(Integer.parseInt(String.valueOf(o2.getThisrollNumber())));
+                return (Integer.parseInt(String.valueOf(o1.getRollNumber())))-(Integer.parseInt(String.valueOf(o2.getRollNumber())));
             }
         });
         studentAdapter.notifyDataSetChanged();
 
 
     }
+
+    /**
+     * Function to check if the rollNumber is Unique or not
+     *
+     *
+     * @param student
+     * @return
+     */
     public boolean uniqueRollNo(Student student){
         for(int i=0;i<studentList.size();i++){
-            if(studentList.get(i).getThisrollNumber() == student.getThisrollNumber()){
+            if(studentList.get(i).getRollNumber() == student.getRollNumber()){
                 return false;
             }
         }

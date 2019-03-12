@@ -3,12 +3,13 @@ package com.example.studentmanager.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.studentmanager.R;
-import com.example.studentmanager.util.Student;
+import com.example.studentmanager.model.Student;
 import com.example.studentmanager.util.Validate;
 
 import static com.example.studentmanager.MainActivity.EDIT_STUDENT;
@@ -56,13 +57,14 @@ public class AddStudentActivity extends AppCompatActivity {
         if(getIntent().getExtras() != null){
             Intent intent = getIntent();
             mbundle = intent.getExtras();
+
             if(mbundle != null){
-                Student student = mbundle.getParcelable("StudentObject");
-                if(mbundle.getInt("Token") == VIEW_STUDENT){
+                Student student = mbundle.getParcelable(getString(R.string.bundleKey));
+                if(mbundle.getInt(getString(R.string.bundleToken)) == VIEW_STUDENT){
                     onStudentView(student);
                 }
-                else if(mbundle.getInt("Token") == EDIT_STUDENT){
-                    onStudentEdit(student,mbundle.getInt("Position"));
+                else if(mbundle.getInt(getString(R.string.bundleToken)) == EDIT_STUDENT){
+                    onStudentEdit(student,mbundle.getInt(getString(R.string.position)));
                 }
                 
             }
@@ -81,21 +83,21 @@ public class AddStudentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try{
-                    if(mbundle.getInt("Token") == EDIT_STUDENT){
+                    if(mbundle.getInt(getString(R.string.bundleToken)) == EDIT_STUDENT){
                         if(getRollNumber.getText().toString().trim().equals("")){
-                            getRollNumber.setError("Can;t be empty");
+                            getRollNumber.setError(getString(R.string.notEmpty));
                         }
                         else {
                             if(getClass.getText().toString().trim().equals("")){
-                                getClass.setError("Can;t be empty");
+                                getClass.setError(getString(R.string.notEmpty));
                             }
                             else{
                                 if(validateFields()){
                                     Student updatedStudent = new Student(getName.getText().toString(),Integer.parseInt(getRollNumber.getText().toString()),Integer.parseInt(getClass.getText().toString()));
                                     Intent intent = new Intent();
                                     Bundle bundle = new Bundle();
-                                    bundle.putInt("Position",POSITION);
-                                    bundle.putParcelable("studentObject",updatedStudent);
+                                    bundle.putInt(getString(R.string.position),POSITION);
+                                    bundle.putParcelable(getString(R.string.studentObject),updatedStudent);
                                     intent.putExtras(bundle);
                                     setResult(RESULT_OK,intent);
                                     finish();
@@ -110,18 +112,18 @@ public class AddStudentActivity extends AppCompatActivity {
                 }
                 catch (Exception e){
                     if(getRollNumber.getText().toString().trim().equals("")){
-                        getRollNumber.setError("Can't be empty");
+                        getRollNumber.setError(getString(R.string.notEmpty));
                     }
                     else{
                         if(getClass.getText().toString().trim().equals("")){
-                            getClass.setError("Can't be empty");
+                            getClass.setError(getString(R.string.notEmpty));
                         }
                         else{
                             if(validateFields()){
                                 Student student = new Student(getName.getText().toString(),Integer.parseInt(getRollNumber.getText().toString()),Integer.parseInt(getClass.getText().toString()));
                                 Intent intent = new Intent();
                                 Bundle bundle = new Bundle();
-                                bundle.putParcelable("studentObject",student);
+                                bundle.putParcelable(getString(R.string.studentObject),student);
                                 intent.putExtras(bundle);
                                 setResult(RESULT_OK,intent);
                                 finish();
@@ -152,9 +154,9 @@ public class AddStudentActivity extends AppCompatActivity {
         getRollNumber.setEnabled(false);
         getClass.setEnabled(false);
         addStudent.setVisibility(View.GONE);
-        getName.setText(student.getThisName());
-        getRollNumber.setText(String.valueOf(student.getThisrollNumber()));
-        getClass.setText(String.valueOf(student.getThisclass()));
+        getName.setText(student.getName());
+        getRollNumber.setText(String.valueOf(student.getRollNumber()));
+        getClass.setText(String.valueOf(student.getMyClass()));
     }
 
     /**
@@ -168,10 +170,10 @@ public class AddStudentActivity extends AppCompatActivity {
      */
     public void onStudentEdit(final Student student,int position){
         POSITION = position;
-        getName.setText(student.getThisName());
-        getRollNumber.setText(String.valueOf(student.getThisrollNumber()));
-        getClass.setText(String.valueOf(student.getThisclass()));
-        addStudent.setText("Update");
+        getName.setText(student.getName());
+        getRollNumber.setText(String.valueOf(student.getRollNumber()));
+        getClass.setText(String.valueOf(student.getMyClass()));
+        addStudent.setText(getString(R.string.update));
 
     }
 
@@ -187,15 +189,15 @@ public class AddStudentActivity extends AppCompatActivity {
     public boolean validateFields(){
         Validate validate = new Validate();
         if(!validate.stringValidate(getName.getText().toString())){
-            getName.setError("Thats not a valid Name");
+            getName.setError(getString(R.string.notValidName));
         }
         else{
             if(!validate.rollNumberValidate(Integer.parseInt(getRollNumber.getText().toString()))){
-                getRollNumber.setError("Enter a valid Roll Number between 1 and 9999");
+                getRollNumber.setError(getString(R.string.notValidRollNo));
             }
             else{
                 if(!validate.classValidate(Integer.parseInt(getClass.getText().toString()))){
-                    getClass.setError("Enter a valid Class between 1 and 12");
+                    getClass.setError(getString(R.string.notValidClass));
                 }
                 else{
                     return true;

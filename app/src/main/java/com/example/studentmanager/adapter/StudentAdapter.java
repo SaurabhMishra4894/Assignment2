@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.example.studentmanager.R;
-import com.example.studentmanager.util.Student;
+import com.example.studentmanager.model.Student;
 import java.util.ArrayList;
 
 public class StudentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -62,9 +62,9 @@ public class StudentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         StudentViewHolder studentViewHolder = (StudentViewHolder) viewHolder;
-        studentViewHolder.textViewName.setText(studentArrayList.get(i).getThisName());
-        studentViewHolder.textViewClass.setText("Class :"+" "+String.valueOf(studentArrayList.get(i).getThisclass()));
-        studentViewHolder.textViewRollno.setText("Roll No :"+" "+ String.valueOf(studentArrayList.get(i).getThisrollNumber()));
+        studentViewHolder.textViewName.setText(studentArrayList.get(i).getName());
+        studentViewHolder.textViewClass.setText("Class :"+" "+String.valueOf(studentArrayList.get(i).getMyClass()));
+        studentViewHolder.textViewRollno.setText("Roll No :"+" "+ String.valueOf(studentArrayList.get(i).getRollNumber()));
 
 
     }
