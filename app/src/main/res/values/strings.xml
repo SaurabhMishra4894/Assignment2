@@ -12,12 +12,9 @@
     <string name="sort_by_name">Sort By Name</string>
     <string name="sort_by_roll_number">Sort By Roll Number</string>
     <string name="popUpError">Something went wrong</string>
-    <string name="bundleKey">StudentObject</string>
-    <string name="bundleToken">Token</string>
     <string name="deleteConfirmation">Are you sure want to delete ?</string>
     <string name="cancel">Cancel</string>
     <string name="studentObject">studentObject</string>
-    <string name="position">Position</string>
     <string name="notUniqueRollNo">Not a Unique Roll Number</string>
     <string name="notValidName">Thats not a valid Name</string>
     <string name="notValidRollNo">Enter a valid Roll Number between 1 and 9999</string>
