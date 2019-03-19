@@ -21,4 +21,8 @@
     <string name="notValidClass">Enter a valid Class between 1 and 12</string>
     <string name="notEmpty">Can\'t be empty</string>
     <string name="update">Update</string>
+    <string name="selectServiceType">Please Select the type of Service</string>
+    <string name="service">Service</string>
+    <string name="intent_service">Intent Service</string>
+    <string name="async">Async</string>
 </resources>

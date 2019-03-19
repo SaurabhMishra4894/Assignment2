@@ -10,13 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.AddStudentActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.ShowStudentActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name=".service.AddStudentSevice"></service>
+        <service android:name=".service.AddStudentIntentService" />
+
     </application>
 
 </manifest>

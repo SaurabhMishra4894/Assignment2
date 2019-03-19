@@ -7,16 +7,16 @@
     android:layout_height="wrap_content"
     android:background="@drawable/horizontal_line"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="@dimen/margin_padding_normal">
 
 
     <TextView
         android:id="@+id/studentObjectName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:textSize="22sp"
+        android:layout_marginStart="@dimen/margin_padding_xnormal"
+        android:layout_marginLeft="@dimen/margin_padding_xnormal"
+        android:textSize="@dimen/text_size_large"
         tools:text="Name"/>
 
     <LinearLayout
@@ -44,7 +44,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/margin_padding_normal"
         android:orientation="horizontal"
         android:visibility="gone">
 

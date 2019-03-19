@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.studentmanager.R;
+import com.example.studentmanager.callback.OnStudentItemClick;
 import com.example.studentmanager.model.Student;
 
 import java.util.ArrayList;
@@ -18,15 +19,8 @@ public class StudentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     ArrayList<Student> studentArrayList;
     private Context mContext;
     Dialog myDialog;
-    private OnItemClickListener mListener;
+    private OnStudentItemClick mListener;
 
-    public interface OnItemClickListener {
-        void onItemClick(int position);
-    }
-
-    public void setOnItemClickListner(OnItemClickListener listner) {
-        mListener = listner;
-    }
 
     /**
      * StudentAdapter constructor sets the values in the ArrayList and Context
@@ -35,9 +29,10 @@ public class StudentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
      * @param studentList
      */
 
-    public StudentAdapter(Context context, ArrayList<Student> studentList) {
+    public StudentAdapter(Context context, ArrayList<Student> studentList, final OnStudentItemClick listner) {
         studentArrayList = studentList;
         mContext = context;
+        mListener = listner;
     }
 
     /**
@@ -51,7 +46,7 @@ public class StudentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, final int i) {
         View layoutInflater = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_student_view, viewGroup, false);
-        return new StudentViewHolder(layoutInflater, mListener);
+        return new StudentViewHolder(layoutInflater);
 
     }
 
@@ -63,12 +58,18 @@ public class StudentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
      * @param i
      */
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int i) {
         StudentViewHolder studentViewHolder = (StudentViewHolder) viewHolder;
         studentViewHolder.textViewName.setText(studentArrayList.get(i).getName());
-        studentViewHolder.textViewClass.setText("Class :" + " " + String.valueOf(studentArrayList.get(i).getMyClass()));
-        studentViewHolder.textViewRollno.setText("Roll No :" + " " + String.valueOf(studentArrayList.get(i).getRollNumber()));
+        studentViewHolder.textViewClass.setText("Class :" + " " + String.valueOf(studentArrayList.get(i).getmClass()));
+        studentViewHolder.textViewRollno.setText("Roll No :" + " " + String.valueOf(studentArrayList.get(i).getRoll_number()));
 
+        studentViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onItemClickListener(viewHolder.getAdapterPosition());
+            }
+        });
 
     }
 
@@ -92,24 +93,13 @@ public class StudentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
          * Student View Holder for StudentAdapter
          *
          * @param itemView
-         * @param listener
          */
-        public StudentViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
+        public StudentViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.studentObjectName);
             textViewClass = itemView.findViewById(R.id.studentObjectClass);
             textViewRollno = itemView.findViewById(R.id.studentObjectRollNumber);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            listener.onItemClick(position);
-                        }
-                    }
-                }
-            });
+
         }
     }
 

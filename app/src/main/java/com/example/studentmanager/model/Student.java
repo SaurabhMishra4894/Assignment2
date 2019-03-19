@@ -5,12 +5,77 @@ import android.os.Parcelable;
 
 /**
  * Class Student defines a Student and its features such as Name/Roll Number/Class
- *
  */
+
 public class Student implements Parcelable {
+
+    public static final String TABLE_NAME = "students";
+
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_CLASS = "class";
+    public static final String COLUMN_ROLL_NUMBER = "roll_number";
+    public static final String COLUMN_TIMESTAMP = "timestamp";
+
+    private int id;
     private String name;
-    private int rollNumber;
-    private int myClass;
+    private int mClass;
+    private int roll_number;
+    private String timestamp;
+
+
+    // Create table SQL query
+    public static final String CREATE_TABLE =
+            "CREATE TABLE " + TABLE_NAME + "("
+                    + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + COLUMN_NAME + " TEXT NOT NULL,"
+                    + COLUMN_CLASS + " INTEGER NOT NULL,"
+                    + COLUMN_ROLL_NUMBER + " INTEGER NOT NULL,"
+                    + COLUMN_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP"
+                    + ")";
+
+
+    /**
+     * constructor student used to set values in the database
+     *
+     * @param id
+     * @param name
+     * @param mClass
+     * @param rollNumber
+     * @param timestamp
+     */
+    public Student(int id, String name, int mClass, int rollNumber, String timestamp) {
+        this.id = id;
+        this.name = name;
+        this.mClass = mClass;
+        this.roll_number = rollNumber;
+        this.timestamp = timestamp;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getmClass() {
+        return mClass;
+    }
+
+    public int getRoll_number() {
+        return roll_number;
+    }
+
 
     /**
      * Constructor Student that will take Name/Roll Number/Class as input
@@ -19,10 +84,10 @@ public class Student implements Parcelable {
      * @param myRollNumber
      * @param myClass
      */
-    public Student(String myName,int myRollNumber, int myClass){
+    public Student(String myName, int myRollNumber, int myClass) {
         this.name = myName;
-        this.rollNumber = myRollNumber;
-        this.myClass = myClass;
+        this.roll_number = myRollNumber;
+        this.mClass = myClass;
     }
 
     /**
@@ -32,8 +97,8 @@ public class Student implements Parcelable {
      */
     private Student(Parcel in) {
         this.name = in.readString();
-        this.rollNumber = in.readInt();
-        this.myClass = in.readInt();
+        this.roll_number = in.readInt();
+        this.mClass = in.readInt();
     }
 
     public static final Creator<Student> CREATOR = new Creator<Student>() {
@@ -48,60 +113,6 @@ public class Student implements Parcelable {
         }
     };
 
-    /**
-     * returns the Name of the student
-     *
-     * @return Name
-     */
-    public String getName() {
-        return this.name;
-    }
-
-    /**
-     * Set the Name for the student
-     *
-     * @param thisName
-     */
-    public void setName(String thisName) {
-        this.name = thisName;
-    }
-
-    /**
-     * returns the ROll NUmber of the student
-     *
-     * @return Roll Number
-     */
-    public int getRollNumber() {
-        return this.rollNumber;
-    }
-
-    /**
-     * sets the RollNumber for the Student
-     *
-     * @param rollNumber
-     */
-    public void setRollNumber(int rollNumber) {
-        this.rollNumber = rollNumber;
-    }
-
-    /**
-     * returns the class for the student
-     *
-     * @return class
-     *
-     */
-    public int getMyClass() {
-        return this.myClass;
-    }
-
-    /**
-     * sets the class for the student
-     *
-     * @param myClass
-     */
-    public void setMyClass(int myClass) {
-        this.myClass = myClass;
-    }
 
     @Override
     public int describeContents() {
@@ -111,7 +122,8 @@ public class Student implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.name);
-        dest.writeInt(this.rollNumber);
-        dest.writeInt(this.myClass);
+        dest.writeInt(this.roll_number);
+        dest.writeInt(this.mClass);
     }
 }
+
