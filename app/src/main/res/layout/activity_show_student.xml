@@ -1,86 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.ShowStudentActivity">
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_padding_xxlarge"
-            android:id="@+id/header"
-            android:orientation="horizontal"
-            android:background="@color/colorPrimary"
+<android.support.design.widget.TabLayout
+    android:id="@+id/tab_layout_show_Student"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?attr/actionBarSize"
+    android:background="@color/colorPrimary"
+    app:tabTextColor="@color/white_color"
+    />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_Pager_show_Student"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
 
-            >
-            <TextView
-                android:id="@+id/tvHeading"
-                android:layout_height="match_parent"
-                android:layout_width="@dimen/margin_padding_zero_size"
-                android:text="@string/student_details"
-                android:gravity="center"
-                style="@style/textStyle"
-                android:layout_weight="1"
-                />
+        >
 
-            <ImageButton
-                android:id="@+id/ibSort"
-                android:padding="@dimen/margin_padding_normal"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:src="@drawable/ic_sort_by_alpha_black_24dp"
-                android:layout_width="wrap_content" />
-            <ImageButton
-                android:id="@+id/ibChangeView"
-                android:padding="@dimen/margin_padding_normal"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:src="@drawable/ic_swap_horiz_black_24dp"
-                android:layout_width="wrap_content" />
+    </android.support.v4.view.ViewPager>
 
-        </LinearLayout>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/studentRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/header"
-            android:layout_above="@+id/buttonLayout"
-            >
-
-
-
-        </android.support.v7.widget.RecyclerView>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/noStudentMessage"
-                android:text="@string/no_students_added_till_yet"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                />
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="bottom"
-            android:id="@+id/buttonLayout"
-            >
-            <Button
-                android:id="@+id/addStudentButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/add_student"
-                android:background="@color/colorPrimary"
-                android:textColor="@color/white_color"
-                />
-        </RelativeLayout>
-</RelativeLayout>
+</LinearLayout>

@@ -3,15 +3,14 @@ package com.example.studentmanager.service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.view.View;
 
 import com.example.studentmanager.database.DatabaseHelper;
 import com.example.studentmanager.model.Student;
 
-import static com.example.studentmanager.activity.AddStudentActivity.INTENT_CLICKED_ROLLNUMBER;
-import static com.example.studentmanager.activity.AddStudentActivity.INTENT_IS_FROM_ADD;
-import static com.example.studentmanager.activity.AddStudentActivity.INTENT_IS_FROM_EDIT;
-import static com.example.studentmanager.activity.AddStudentActivity.INTENT_STUDENT_OBJECT;
+import static com.example.studentmanager.activity.ViewStudentActivity.INTENT_CLICKED_ROLLNUMBER;
+import static com.example.studentmanager.activity.ViewStudentActivity.INTENT_IS_FROM_ADD;
+import static com.example.studentmanager.activity.ViewStudentActivity.INTENT_IS_FROM_EDIT;
+import static com.example.studentmanager.activity.ViewStudentActivity.INTENT_STUDENT_OBJECT;
 
 public class AddStudentAsyncTask extends AsyncTask<Intent, Integer, String> {
 
