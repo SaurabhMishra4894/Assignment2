@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <Button
-            android:id="@+id/btn_add_service"
+            android:id="@+id/btn_add_service_dilog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/service"
@@ -24,7 +24,7 @@
             />
 
         <Button
-            android:id="@+id/btn_add_intent_service"
+            android:id="@+id/btn_add_intent_service_dilog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/intent_service"
@@ -40,7 +40,7 @@
 
 
         <Button
-            android:id="@+id/btn_add_async"
+            android:id="@+id/btn_add_async_dilog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/async"

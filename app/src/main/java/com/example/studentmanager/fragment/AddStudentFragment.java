@@ -88,10 +88,10 @@ public class AddStudentFragment extends Fragment {
         View view = getLayoutInflater().inflate(R.layout.fragment_add_student, container, false);
         // Inflate the layout for this fragment
 
-        etName = view.findViewById(R.id.name);
-        etRollNumber = view.findViewById(R.id.rollNumber);
-        etClass = view.findViewById(R.id.myClass);
-        btnAddStudent = view.findViewById(R.id.addStudent);
+        etName = view.findViewById(R.id.et_name_fragment_add_student);
+        etRollNumber = view.findViewById(R.id.et_rollNumber_fragment_add_student);
+        etClass = view.findViewById(R.id.et_class_fragment_add_student);
+        btnAddStudent = view.findViewById(R.id.btn_addStudent_fragment_add_student);
         mDatabaseHelper = new DatabaseHelper(mContext);
 
         clearFields();
@@ -115,9 +115,9 @@ public class AddStudentFragment extends Fragment {
 
 
                 // set values for custom dialog components - text, image and button
-                Button addService = view.findViewById(R.id.btn_add_service);
-                Button addIntentService = view.findViewById(R.id.btn_add_intent_service);
-                Button addAsyncService = view.findViewById(R.id.btn_add_async);
+                Button addService = view.findViewById(R.id.btn_add_service_dilog);
+                Button addIntentService = view.findViewById(R.id.btn_add_intent_service_dilog);
+                Button addAsyncService = view.findViewById(R.id.btn_add_async_dilog);
 
                 dialog.show();
 

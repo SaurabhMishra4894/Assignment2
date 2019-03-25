@@ -1,16 +1,13 @@
 package com.example.studentmanager.activity;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.studentmanager.R;
-import com.example.studentmanager.database.DatabaseHelper;
 import com.example.studentmanager.model.Student;
 
 
@@ -33,7 +30,7 @@ public class ViewStudentActivity extends AppCompatActivity {
     private EditText etName, etRollNumber, etClass;
     private Button btnAddStudent;
     private Student mStudent;
-    private boolean  isFromView;
+    private boolean isFromView;
 
 
     /**
@@ -44,11 +41,11 @@ public class ViewStudentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_student);
-        etName = findViewById(R.id.name);
-        etRollNumber = findViewById(R.id.rollNumber);
-        etClass = findViewById(R.id.myClass);
-        btnAddStudent = findViewById(R.id.addStudent);
+        setContentView(R.layout.activity_view_student);
+        etName = findViewById(R.id.et_name_activity_add_student);
+        etRollNumber = findViewById(R.id.et_rollNumber_activity_add_student);
+        etClass = findViewById(R.id.et_Class_activity_add_student);
+        btnAddStudent = findViewById(R.id.btn_addStudent_activity_add_student);
 
 
         /*
@@ -77,17 +74,14 @@ public class ViewStudentActivity extends AppCompatActivity {
      * method onStudentView which calls when user View students data
      */
     public void onStudentView() {
-        if (isFromView) {
-            etName.setEnabled(false);
-            etRollNumber.setEnabled(false);
-            etClass.setEnabled(false);
-            btnAddStudent.setVisibility(View.GONE);
-            etName.setText(mStudent.getName());
-            etRollNumber.setText(String.valueOf(mStudent.getRoll_number()));
-            etClass.setText(String.valueOf(mStudent.getmClass()));
-        } else {
-            Toast.makeText(getApplicationContext(), R.string.popUpError, Toast.LENGTH_SHORT).show();
-        }
+
+        etName.setEnabled(false);
+        etRollNumber.setEnabled(false);
+        etClass.setEnabled(false);
+        btnAddStudent.setVisibility(View.GONE);
+        etName.setText(mStudent.getName());
+        etRollNumber.setText(String.valueOf(mStudent.getRoll_number()));
+        etClass.setText(String.valueOf(mStudent.getmClass()));
 
     }
 

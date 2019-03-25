@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <Button
-            android:id="@+id/viewStudent"
+            android:id="@+id/btn_viewStudent_dilog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/view"
@@ -24,7 +24,7 @@
             />
 
         <Button
-            android:id="@+id/editStudent"
+            android:id="@+id/btn_editStudent_dilog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/edit"
@@ -40,7 +40,7 @@
 
 
         <Button
-            android:id="@+id/deleteStudent"
+            android:id="@+id/btn_deleteStudent_dilog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/delete"

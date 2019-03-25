@@ -96,9 +96,9 @@ public class StudentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
          */
         public StudentViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewName = itemView.findViewById(R.id.studentObjectName);
-            textViewClass = itemView.findViewById(R.id.studentObjectClass);
-            textViewRollno = itemView.findViewById(R.id.studentObjectRollNumber);
+            textViewName = itemView.findViewById(R.id.tv_name_item_student_view);
+            textViewClass = itemView.findViewById(R.id.tv_class_item_student_view);
+            textViewRollno = itemView.findViewById(R.id.tv_rollNumber_item_student_view);
 
         }
     }

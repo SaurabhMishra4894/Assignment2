@@ -97,9 +97,9 @@ public class ShowStudentListFragment extends Fragment implements OnStudentItemCl
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_show_student_list, container, false);
 
-        final RecyclerView studentRecyclerView = view.findViewById(R.id.studentRecyclerView);
-        final ImageButton imageView = view.findViewById(R.id.ibChangeView);
-        ibSortDetails = view.findViewById(R.id.ibSort);
+        final RecyclerView studentRecyclerView = view.findViewById(R.id.rv_students_fragment_show_student);
+        final ImageButton changeView = view.findViewById(R.id.ib_ChangeView_fragment_show_student);
+        ibSortDetails = view.findViewById(R.id.ib_sort_fragment_show_student);
 
         mNoStudentMessage = view.findViewById(R.id.noStudentMessage);
         studentAdapter = new StudentAdapter(mContext, studentList, this);
@@ -150,12 +150,12 @@ public class ShowStudentListFragment extends Fragment implements OnStudentItemCl
          * OnClickListner for changing the view of the layout
          *
          */
-        imageView.setOnClickListener(new View.OnClickListener() {
+        changeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RotateAnimation rotateAnimation =
                         (RotateAnimation) AnimationUtils.loadAnimation(mContext, R.anim.rotate);
-                imageView.startAnimation(rotateAnimation);
+                changeView.startAnimation(rotateAnimation);
                 if (sGridView == 0) {
                     sGridView = 1;
                     studentRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
@@ -171,10 +171,10 @@ public class ShowStudentListFragment extends Fragment implements OnStudentItemCl
 
         /*
          * OnClickListener for the button to add Student
-         * Opens a new Activity for result to get student details from User
+         *
          */
 
-        final Button button = view.findViewById(R.id.addStudentButton);
+        final Button button = view.findViewById(R.id.btn_addStudent_fragment_show_Student);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -183,6 +183,7 @@ public class ShowStudentListFragment extends Fragment implements OnStudentItemCl
                 final Bundle bundle = new Bundle();
                 bundle.putBoolean(INTENT_IS_FROM_ADD, true);
                 intent.putExtras(bundle);
+
 
                 mListener.onAddData(intent);
             }
@@ -266,9 +267,9 @@ public class ShowStudentListFragment extends Fragment implements OnStudentItemCl
 
 
         // set values for custom dialog components - text, image and button
-        Button viewButton = view.findViewById(R.id.viewStudent);
-        Button editButton = view.findViewById(R.id.editStudent);
-        Button deleteButton = view.findViewById(R.id.deleteStudent);
+        Button viewButton = view.findViewById(R.id.btn_viewStudent_dilog);
+        Button editButton = view.findViewById(R.id.btn_editStudent_dilog);
+        Button deleteButton = view.findViewById(R.id.btn_deleteStudent_dilog);
 
         final Intent intent = new Intent(mContext, ViewStudentActivity.class);
 

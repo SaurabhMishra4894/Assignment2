@@ -21,7 +21,7 @@
             android:src="@drawable/ic_launcher_background"/>
 
         <EditText
-            android:id="@+id/name"
+            android:id="@+id/et_name_fragment_add_student"
             style="@style/DarkStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
             android:hint="@string/name"/>
 
         <EditText
-            android:id="@+id/rollNumber"
+            android:id="@+id/et_rollNumber_fragment_add_student"
             style="@style/DarkStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             android:inputType="number"/>
 
         <EditText
-            android:id="@+id/myClass"
+            android:id="@+id/et_class_fragment_add_student"
             style="@style/DarkStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:inputType="number"/>
 
         <Button
-            android:id="@+id/addStudent"
+            android:id="@+id/btn_addStudent_fragment_add_student"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_padding_xxlarge"
